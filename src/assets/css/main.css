@@ -1,0 +1,100 @@
+
+@import "./reset.css";
+
+@import "./atomic.css";
+
+@import "./semantic.css";
+
+
+
+
+
+/* FLEXBOX */
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+
+.main {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 0.3rem;
+  min-height: 95vh;
+  text-align: center;
+}
+
+
+.error {
+  margin: 3rem auto;
+  width: 10rem;
+  background-color: darkred;
+  color: snow;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 0.2rem;
+}
+
+.title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* SPINNER */
+
+.spinner {
+  width: 6rem;
+  height: 6rem;
+  border: 18px solid #a89be6;
+  border-top: 18px solid #2c2063;
+  border-radius: 100%;
+  margin: 10rem auto;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* CARDS */
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  margin: 6rem auto;
+}
+
+.add-to-cart-icon-wrapper {
+  width: 55px;
+  height: 50px;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  border-radius: 5px;
+  border: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  transition: background-color 0.6 ease;
+}
+
+.add-to-cart-icon-wrapper:hover {
+  opacity: 1;
+}
+
