@@ -56,8 +56,9 @@
 import TableComponent from '../components/TableComponent.vue'
 import ModalWindow from '../components/ModalWindow.vue'
 
+const { VITE_API_URL: baseUrl } = import.meta.env
 
-import { fetchService as ax } from '../services/fetchService'
+import ax from 'dedalo-ax'
 
 export default {
 
@@ -73,7 +74,8 @@ export default {
   }),
 
   async created() {
-    this.products = await ax.get('/products')
+    const endpoint = baseUrl + '/products'
+    this.products = await ax.get(endpoint)
   },
 
   methods: {
@@ -85,7 +87,7 @@ export default {
 
     async confirmDelete() {
       this.showModal = false
-      const endpoint = `/products/${this.productId}`
+      const endpoint = `${baseUrl}/products/${this.productId}`
       const res = await ax.delete(endpoint)
       console.log(res)
 

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  dedalo-ax:
+    specifier: ^1.0.6
+    version: 1.0.6
   vue:
     specifier: ^3.3.4
     version: 3.3.4
@@ -336,6 +339,10 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+
+  /dedalo-ax@1.0.6:
+    resolution: {integrity: sha512-Vh/BgL8cEVgoY03qSRMUH9ykTohX7BkCRMH2phZhOw7//gMqvMFxVPduWOpohjHesMC0klWxjYwSLtbGhuLZkQ==}
+    dev: false
 
   /esbuild@0.17.19:
     resolution: {integrity: sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==}

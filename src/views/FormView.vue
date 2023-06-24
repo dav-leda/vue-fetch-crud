@@ -68,7 +68,9 @@
 
 <script>
 
-import { fetchService as ax } from '../services/fetchService'
+import ax from 'dedalo-ax'
+
+const { VITE_API_URL: baseUrl } = import.meta.env
 
 const placeholderProduct = {
   name: 'Chocotorta',
@@ -89,7 +91,7 @@ export default {
   async created() {
 
     const id = this.$route.params.id
-    const endpoint = `/products/${id}`
+    const endpoint = `${baseUrl}/products/${id}`
 
     if (id === 'new-product') {
       this.product = placeholderProduct
@@ -132,7 +134,7 @@ export default {
         ? ''
         : this.$route.params.id;
 
-      const endpoint = `/products/${id}`
+      const endpoint = `${baseUrl}/products/${id}`
 
       const res = newProduct
         ? await ax.post(endpoint, this.product)

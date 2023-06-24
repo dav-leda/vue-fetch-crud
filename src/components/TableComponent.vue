@@ -16,7 +16,13 @@
 
         <td class="product-name">{{ product.name }}</td>
         <td>
-          <img :src="product.imgsrc" :alt="product.name" class="product-img">
+          <img
+            loading="lazy"
+            style="opacity:0;"
+            @load="$event.target.style.opacity = 1" 
+            :src="product.imgsrc" 
+            :alt="product.name" 
+            class="product-img">
         </td>
         <td class="product-price">$ {{ product.price }}</td>
         <td class="center">{{ product.stock }}</td>
@@ -66,6 +72,7 @@ export default {
   height: 50px;
   border-radius: 5px;
   object-fit: cover;
+  transition: opacity 1s ease;
 }
 
 .product-name {
