@@ -138,7 +138,7 @@ export default {
 
       const res = newProduct
         ? await ax.post(endpoint, this.product)
-        : await ax.update(endpoint, this.product)
+        : await ax.put(endpoint, this.product)
 
       console.log(res)
     }

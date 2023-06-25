@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "dedalo-ax": "^1.0.6",
+    "dedalo-ax": "^1.0.11",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"
   },
