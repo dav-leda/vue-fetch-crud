@@ -89,7 +89,7 @@ export default {
       this.showModal = false
       const endpoint = `${baseUrl}/products/${this.productId}`
       const res = await ax.delete(endpoint)
-      console.log(res)
+      console.log('delete', res)
 
       this.products = this.products.filter(product => {
         return product.id !== this.productId
