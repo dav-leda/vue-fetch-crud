@@ -86,10 +86,12 @@ export default {
     },
 
     async confirmDelete() {
+      
       this.showModal = false
-      const endpoint = `${baseUrl}/products/${this.productId}`
+
+      const endpoint = `${baseUrl}/products/${this.productId}`;
       const res = await ax.delete(endpoint)
-      console.log('delete', res)
+      console.log({res})
 
       this.products = this.products.filter(product => {
         return product.id !== this.productId
