@@ -18,7 +18,6 @@
         <td>
           <img
             loading="lazy"
-            style="opacity:0;"
             @load="$event.target.style.opacity = 1" 
             :src="product.imgsrc" 
             :alt="product.name" 
@@ -47,10 +46,7 @@
       </tr>
 
     </tbody>
-
   </table>
-
-
 </template>
 
 <script>
@@ -72,6 +68,7 @@ export default {
   height: 50px;
   border-radius: 5px;
   object-fit: cover;
+  opacity: 0;
   transition: opacity 1s ease;
 }
 
