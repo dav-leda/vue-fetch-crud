@@ -15,17 +15,21 @@
       <tr v-for="product in products" :key="product.id">
 
         <td class="product-name">{{ product.name }}</td>
+        
         <td>
           <img
             loading="lazy"
-            style="opacity:0;"
             @load="$event.target.style.opacity = 1" 
+            class="product-img"
             :src="product.imgsrc" 
             :alt="product.name" 
-            class="product-img">
+          >
         </td>
+        
         <td class="product-price">$ {{ product.price }}</td>
+        
         <td class="center">{{ product.stock }}</td>
+        
         <td>
           <button 
             class="btn-primary"
@@ -37,6 +41,7 @@
 
           >Editar</button>
         </td>
+       
         <td>
           <button 
             class="btn-danger"
@@ -45,12 +50,8 @@
         </td>
 
       </tr>
-
     </tbody>
-
   </table>
-
-
 </template>
 
 <script>
@@ -72,6 +73,7 @@ export default {
   height: 50px;
   border-radius: 5px;
   object-fit: cover;
+  opacity: 0;
   transition: opacity 1s ease;
 }
 
