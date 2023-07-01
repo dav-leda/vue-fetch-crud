@@ -45,6 +45,7 @@ export const products = {
       console.log({res})
     },
     deleteProduct: async ({ commit }, id) => {
+      console.log({id})
       const res = await ax.delete(`${endpoint}/${id}`)
       commit('deleteProduct', id)
       console.log({res})
@@ -52,7 +53,7 @@ export const products = {
     updateProduct: async ({ commit }, product) => {
       const updated = await ax.put(`${endpoint}/${product.id}`, product)
       commit('updateProduct', updated)
-      console.log({res})
+      console.log({updated})
     }
   }
 }

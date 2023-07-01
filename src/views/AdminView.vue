@@ -15,7 +15,7 @@
 
     <TableComponent
       :products="products"
-      @delete-product="deleteProduct"  
+      @delete-product="deleteModal"  
     />
 
     <ModalWindow
@@ -53,14 +53,10 @@
 
 <script>
 
-import ax from 'dedalo-ax'
-
 import { mapGetters, mapActions } from 'vuex'
 
 import TableComponent from '../components/TableComponent.vue'
 import ModalWindow from '../components/ModalWindow.vue'
-
-const { VITE_API_URL: baseUrl } = import.meta.env
 
 
 export default {
@@ -89,26 +85,17 @@ export default {
 
     ...mapActions('products', ['getProducts', 'deleteProduct']),
 
-    deleteProduct(id) {
+    // Ojo con el conflicto de nombres (deleteProduct)
+    deleteModal(id) {
       this.showModal = true
       this.productId = id
       const product = this.productById(id)
       this.productName = product ? product.name : ''
     },
 
-    confirmDelete() {
-      
+    confirmDelete() {      
       this.showModal = false
-
       this.deleteProduct(this.productId)
-
-      // const endpoint = `${baseUrl}/products/${this.productId}`;
-      // const res = await ax.delete(endpoint)
-      // console.log({res})
-
-      // this.products = this.products.filter(product => {
-      //   return product.id !== this.productId
-      // })
     }
   }
 }

@@ -18,10 +18,11 @@
         <td>
           <img
             loading="lazy"
+            class="product-img"
             @load="$event.target.style.opacity = 1" 
             :src="product.imgsrc" 
             :alt="product.name" 
-            class="product-img">
+          >
         </td>
         <td class="product-price">$ {{ product.price }}</td>
         <td class="center">{{ product.stock }}</td>
