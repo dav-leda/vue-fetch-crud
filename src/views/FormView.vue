@@ -62,6 +62,8 @@
 
 </div>
 
+<div v-else-if="fetchError" class="error">{{ fetchError }}</div>
+
 <div v-else class="spinner"></div>
   
 </template>
@@ -89,7 +91,7 @@ export default {
 
   computed: {
 
-    ...mapGetters('products', ['productById']),
+    ...mapGetters('products', ['productById', 'fetchError']),
 
     newProduct() {
       return this.$route.params.id === 'new-product'

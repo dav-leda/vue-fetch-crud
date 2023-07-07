@@ -1,4 +1,6 @@
 
+
+// Importar servicios de acceso a la API
 import { fetchService } from '@/services/fetchService'
 
 // Crear el archivo .env en la raíz del proyecto
@@ -7,6 +9,9 @@ import { fetchService } from '@/services/fetchService'
 
 // Desestructurar la variable y redeclararla como baseUrl
 const { VITE_API_URL: baseUrl } = import.meta.env
+
+// Simular error en la llamada a la API
+const baseUrl2 = 'https://token-inexistente.mockapi.io/api'
 
 // Endpoint de productos dentro de MockApi
 const endpoint = baseUrl + '/products';
@@ -17,12 +22,14 @@ export const products = {
   namespaced: true,
 
   state: {
-    products: []
+    products: [],
+    fetchError: null
   },
 
   getters: {
     products: state => state.products,
-    productById: state => id => state.products.find(p => p.id === id)
+    productById: state => id => state.products.find(p => p.id === id),
+    fetchError: state => state.fetchError
   },
 
   mutations: {
@@ -42,31 +49,35 @@ export const products = {
     deleteProduct: (state, id) => {
       state.products = state.products.filter(product => product.id !== id)
     },
+
+    setFetchError: (state, error) => {
+      state.fetchError = error
+    }
   },
 
   actions: {
-    getProducts: async ({ commit }) => {
-      const products = await fetchService.get(endpoint)
-      commit('setProducts', products)
-      console.log({products})
+    getProducts: ({ commit }) => {
+      fetchService.get(endpoint)
+        .then(products => commit('setProducts', products))
+        .catch(error => commit('setFetchError', error))
     },
 
-    createProduct: async ({ commit }, product) => {
-      const newProduct = await fetchService.post(endpoint, product)
-      commit('createProduct', newProduct)
-      console.log({newProduct})
+    createProduct: ({ commit }, product) => {
+      fetchService.post(endpoint, product)
+        .then(created => commit('createProduct', created))
+        .catch(error => commit('setFetchError', error))
     },
 
-    updateProduct: async ({ commit }, product) => {
-      const updated = await fetchService.put(`${endpoint}/${product.id}`, product)
-      commit('updateProduct', updated)
-      console.log({updated})
+    updateProduct: ({ commit }, product) => {
+      fetchService.put(`${endpoint}/${product.id}`, product)
+        .then(updated => commit('updateProduct', updated))
+        .catch(error => commit('setFetchError', error))
     },
 
-    deleteProduct: async ({ commit }, id) => {
-      const deleted = await fetchService.delete(`${endpoint}/${id}`)
-      commit('deleteProduct', id)
-      console.log({deleted})
+    deleteProduct: ({ commit }, id) => {
+      fetchService.delete(`${endpoint}/${id}`)
+        .then(() => commit('deleteProduct', id))
+        .catch(error => commit('setFetchError', error))
     }
   }
 }

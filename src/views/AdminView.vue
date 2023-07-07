@@ -50,6 +50,8 @@
 
   </div>
 
+  <div v-else-if="fetchError" class="error">{{ fetchError }}</div>
+
   <div v-else class="spinner"></div>
 
 </template>
@@ -69,7 +71,8 @@ export default {
   },
 
   data: () => ({ 
-    // No es necesario, ya que se inicializa en el store
+    // No es necesario declarar products
+    // ya que se inicializa en el store
     // products: [],
     showModal: false,
     productId: '',
@@ -81,7 +84,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('products', ['products', 'productById'])
+    ...mapGetters('products', ['products', 'productById', 'fetchError'])
   },
 
   methods: {

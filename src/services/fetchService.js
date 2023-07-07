@@ -44,7 +44,7 @@ export const fetchService = {
       try {
         const res = await fetch(url, { ...options, signal })
         return res.json()
-        
+
       } catch (err) {
         this.error = err.message
         console.log(err)
