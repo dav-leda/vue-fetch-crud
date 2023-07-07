@@ -15,7 +15,7 @@
 
     <TableComponent
       :products="products"
-      @delete-product="deleteProduct"  
+      @delete-product="deleteModal"  
     />
 
     <ModalWindow
@@ -53,12 +53,11 @@
 
 <script>
 
+import { mapGetters, mapActions } from 'vuex'
+
 import TableComponent from '../components/TableComponent.vue'
 import ModalWindow from '../components/ModalWindow.vue'
 
-const { VITE_API_URL: baseUrl } = import.meta.env
-
-import ax from 'dedalo-ax'
 
 export default {
 
@@ -67,35 +66,36 @@ export default {
   },
 
   data: () => ({ 
-    products: [],
+    // No es necesario, ya que se inicializa en el store
+    // products: [],
     showModal: false,
     productId: '',
     productName: ''
   }),
 
-  async created() {
-    const endpoint = baseUrl + '/products'
-    this.products = await ax.get(endpoint)
+  created() {
+    this.getProducts()
+  },
+
+  computed: {
+    ...mapGetters('products', ['products', 'productById'])
   },
 
   methods: {
-    deleteProduct(id) {
+
+    ...mapActions('products', ['getProducts', 'deleteProduct']),
+
+    // Ojo con el conflicto de nombres (deleteProduct)
+    deleteModal(id) {
       this.showModal = true
       this.productId = id
-      this.productName = this.products.find(p => p.id === id).name
+      const product = this.productById(id)
+      this.productName = product ? product.name : ''
     },
 
-    async confirmDelete() {
-      
+    confirmDelete() {      
       this.showModal = false
-
-      const endpoint = `${baseUrl}/products/${this.productId}`;
-      const res = await ax.delete(endpoint)
-      console.log({res})
-
-      this.products = this.products.filter(product => {
-        return product.id !== this.productId
-      })
+      this.deleteProduct(this.productId)
     }
   }
 }

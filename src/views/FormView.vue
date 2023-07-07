@@ -68,9 +68,7 @@
 
 <script>
 
-import ax from 'dedalo-ax'
-
-const { VITE_API_URL: baseUrl } = import.meta.env
+import { mapGetters, mapActions } from 'vuex'
 
 const placeholderProduct = {
   name: 'Chocotorta',
@@ -80,7 +78,6 @@ const placeholderProduct = {
   imgsrc: 'https://dav-leda.github.io/images-bakery/chocotorta.jpg'
 }
 
-
 export default {
 
   data: () => ({ 
@@ -88,24 +85,24 @@ export default {
     added: false
   }),
 
-  async created() {
-
+  created() {
     const id = this.$route.params.id
-    const endpoint = `${baseUrl}/products/${id}`
 
-    if (id === 'new-product') {
-      this.product = placeholderProduct
-    } else {
-      this.product = await ax.get(endpoint)
-    }
+    this.product = this.newProduct 
+      ? placeholderProduct 
+      : this.productById(id)
   },
 
   computed: {
+
+    ...mapGetters('products', ['productById']),
+
+    newProduct() {
+      return this.$route.params.id === 'new-product'
+    },
+
     btnText() {
-      const newProduct = 
-        this.$route.params.id === 'new-product'
-      
-      if (newProduct) {
+      if (this.newProduct) {
         return this.added 
           ? 'Agregado' 
           : 'Agregar Producto'
@@ -123,24 +120,14 @@ export default {
   },
 
   methods: {
-    async addOrUpdateProduct() {
 
-      this.added = true
+    ...mapActions('products', ['createProduct', 'updateProduct']),
 
-      const newProduct = 
-        this.$route.params.id === 'new-product'
-
-      const id = newProduct
-        ? ''
-        : this.$route.params.id;
-
-      const endpoint = `${baseUrl}/products/${id}`
-
-      const res = newProduct
-        ? await ax.post(endpoint, this.product)
-        : await ax.put(endpoint, this.product)
-
-      console.log(res)
+    addOrUpdateProduct() {
+      this.added = true;
+      this.newProduct 
+        ? this.createProduct(this.product)
+        : this.updateProduct(this.product)
     }
   }
 }
