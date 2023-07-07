@@ -70,13 +70,7 @@
 
 import { mapGetters, mapActions } from 'vuex'
 
-const placeholderProduct = {
-  name: 'Chocotorta',
-  description: 'Con chocolinas.',
-  price: 1000,
-  stock: 1,
-  imgsrc: 'https://dav-leda.github.io/images-bakery/chocotorta.jpg'
-}
+import { placeholderProduct } from '@/mock-data'
 
 export default {
 

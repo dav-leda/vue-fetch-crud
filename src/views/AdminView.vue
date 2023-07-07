@@ -5,12 +5,11 @@
     <button 
       class="btn-add"
 
-      @click="$router.push(
-        { 
-          name: 'form', 
-          params: { id: 'new-product' } 
-        }
-      )"
+      @click="$router.push({ 
+        name: 'form', 
+        params: { id: 'new-product' } 
+      })"
+
     >Agregar Producto</button>
 
     <TableComponent
@@ -23,15 +22,18 @@
       @close-modal="showModal = false"
     >
       <template #header>
+
         <h4 class="m-1">
           ¿Estás seguro de que deseas <strong>eliminar</strong> este producto?
         </h4>
         <h4 class="ml-1 mb-3">
           Producto: <strong>{{ productName }}</strong>
         </h4>
+
       </template>
 
       <template #footer>
+
         <button 
           @click="confirmDelete"
           class="btn-delete"
@@ -41,6 +43,7 @@
           @click="showModal = false"
           class="btn-cancel"
         >Cancelar</button>
+
       </template>
 
     </ModalWindow>
@@ -85,7 +88,6 @@ export default {
 
     ...mapActions('products', ['getProducts', 'deleteProduct']),
 
-    // Ojo con el conflicto de nombres (deleteProduct)
     deleteModal(id) {
       this.showModal = true
       this.productId = id

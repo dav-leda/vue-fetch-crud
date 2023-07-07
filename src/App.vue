@@ -3,7 +3,7 @@
   <main>
 
     <h1 class="m-1 bold u">Ejemplo CRUD</h1>
-    <h2 class="bold mb-1">Create - Read - Update - Delete</h2>
+    <h2 class="mb-1 bold">Create - Read - Update - Delete</h2>
     
     <RouterView/>
 
