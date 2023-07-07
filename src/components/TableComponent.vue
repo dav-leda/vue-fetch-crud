@@ -21,7 +21,6 @@
             loading="lazy"
             class="product-img"
             @load="$event.target.style.opacity = 1" 
-            class="product-img"
             :src="product.imgsrc" 
             :alt="product.name" 
           >
