@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   dedalo-ax:
-    specifier: ^1.0.11
-    version: 1.0.11
+    specifier: ^1.0.18
+    version: 1.0.18
   vue:
     specifier: ^3.3.4
     version: 3.3.4
@@ -343,8 +343,8 @@ packages:
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
 
-  /dedalo-ax@1.0.11:
-    resolution: {integrity: sha512-trLG9Ookaox372tj5pYZoPrIJ6WwoDV/W8RFu2BxPXD7pp80THDOuT3BmoEwt/wrNf/Tt9dGA5JpMoD64wSmew==}
+  /dedalo-ax@1.0.18:
+    resolution: {integrity: sha512-OGj9cIa8R1dWSi4/+WwtdbVGBTdJKitImT8J37eSRSiOqdnPAx6OceqreASHt8NaEho1zs7p7MPU+a86MLvisw==}
     dev: false
 
   /esbuild@0.17.19:

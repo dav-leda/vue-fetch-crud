@@ -1,6 +1,6 @@
 
 import { createStore } from 'vuex'
-import { products } from './products'
+import { products } from './modules/products'
 
 
 export const store = createStore({
