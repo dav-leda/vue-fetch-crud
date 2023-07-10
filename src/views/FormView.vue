@@ -56,7 +56,7 @@
 
   <button
     class="add-btn"
-    :class="btnColor"
+    :class="{ added }"
     @click="addOrUpdateProduct"
   > {{ btnText }} </button>
 
@@ -108,10 +108,6 @@ export default {
           ? 'Actualizado' 
           : 'Actualizar Producto'
       }
-    },
-
-    btnColor() {
-      return this.added ? 'added' : ''
     }
   },
 

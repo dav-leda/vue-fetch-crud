@@ -14,7 +14,7 @@
 
     <TableComponent
       :products="products"
-      @delete-product="deleteModal"  
+      @delete-product="openModal"  
     />
 
     <ModalWindow
@@ -72,7 +72,7 @@ export default {
 
   data: () => ({ 
     // No es necesario declarar products
-    // ya que se inicializa en el store
+    // ya que el estado se inicializa en el store
     // products: [],
     showModal: false,
     productId: '',
@@ -91,7 +91,7 @@ export default {
 
     ...mapActions('products', ['getProducts', 'deleteProduct']),
 
-    deleteModal(id) {
+    openModal(id) {
       this.showModal = true
       this.productId = id
       const product = this.productById(id)

@@ -5,7 +5,7 @@
       
       <dialog 
         v-if="showModal" 
-        @click.self="closeModal" 
+        @click.self="$emit('close-modal')" 
         class="modal"
       >
         
@@ -27,19 +27,20 @@
 </template>
 
 
-<script setup lang="ts">
+<script>
 
-interface Props {
-  showModal: boolean
+export default {
+
+  props: {
+    showModal: Boolean
+  },
+
+  emits: ['close-modal']
 }
 
-defineProps<Props>()
-
-const emits = defineEmits(['close-modal'])
-
-const closeModal = () => emits('close-modal')
-
 </script>
+
+
 
 <style scoped>
 
