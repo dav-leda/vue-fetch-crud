@@ -6,10 +6,12 @@
     Producto:
     <input 
       type="text"
-      maxlength="300" 
+      maxlength="300"
+      required 
       id="name" 
       v-model="product.name" 
       :placeholder="product.name"
+      :class="{ error: !product.name }"
     >
   </label>
 
@@ -25,22 +27,27 @@
 
   <label for="price">
     Precio:
-    <input 
-      type="number" 
+    <input
+      type="number"
+      required 
       min="100"
       id="price" 
       v-model.number="product.price" 
-      :placeholder="product.price">
+      :placeholder="product.price"
+      :class="minError(product.price, 1000)"
+    >
   </label>
 
   <label for="stock">
     Stock:
     <input 
       type="number"
+      required
       min="1" 
       id="stock" 
       v-model.number="product.stock" 
       :placeholder="product.stock"
+      :class="minError(product.stock, 2)"
     >
   </label>
 
@@ -48,10 +55,13 @@
     URL de la imagen:
     <input 
       type="text"
-      maxlength="100" 
+      required
+      maxlength="200" 
       id="imgsrc" 
       v-model="product.imgsrc" 
-      :placeholder="product.imgsrc">
+      :placeholder="product.imgsrc"
+      :class="{ error: !product.imgsrc }"
+    >
   </label>
 
   <button
@@ -62,7 +72,7 @@
 
 </div>
 
-<div v-else-if="fetchError" class="error">{{ fetchError }}</div>
+<div v-else-if="fetchError" class="error-mg">{{ fetchError }}</div>
 
 <div v-else class="spinner"></div>
   
@@ -120,6 +130,10 @@ export default {
       this.newProduct 
         ? this.createProduct(this.product)
         : this.updateProduct(this.product)
+    },
+
+    minError(value, min) {
+      return value < min ? 'error' : ''
     }
   }
 }
@@ -127,6 +141,13 @@ export default {
 </script>
 
 <style scoped>
+
+.error {
+  border: 1px solid red;
+  outline: none;
+  box-shadow: 0 0 6px 5px red;
+}
+
 
 label {
   display: block;
@@ -177,4 +198,6 @@ textarea {
   cursor: pointer;
   margin: 8rem 1rem 0rem 2rem;
 }
+
+
 </style>

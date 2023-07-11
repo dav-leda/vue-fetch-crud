@@ -50,7 +50,7 @@
 
   </div>
 
-  <div v-else-if="fetchError" class="error">{{ fetchError }}</div>
+  <div v-else-if="fetchError" class="error-msg">{{ fetchError }}</div>
 
   <div v-else class="spinner"></div>
 
