@@ -12,7 +12,7 @@
       v-model="product.name" 
       :placeholder="product.name"
       class="input-field"
-      :class="{ error: !product.name }"
+      :class="{ 'error': !product.name }"
     >
   </label>
 

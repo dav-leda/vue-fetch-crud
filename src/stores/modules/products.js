@@ -58,19 +58,19 @@ export const products = {
   actions: {
     getProducts: ({ commit }) => {
       fetchService.get(endpoint)
-        .then(products => commit('setProducts', products))
+        .then(products => products && commit('setProducts', products))
         .catch(error => commit('setFetchError', error))
     },
 
     createProduct: ({ commit }, product) => {
       fetchService.post(endpoint, product)
-        .then(created => commit('createProduct', created))
+        .then(created => created && commit('createProduct', created))
         .catch(error => commit('setFetchError', error))
     },
 
     updateProduct: ({ commit }, product) => {
       fetchService.put(`${endpoint}/${product.id}`, product)
-        .then(updated => commit('updateProduct', updated))
+        .then(updated => updated && commit('updateProduct', updated))
         .catch(error => commit('setFetchError', error))
     },
 
