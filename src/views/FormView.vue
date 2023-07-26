@@ -11,6 +11,7 @@
       id="name" 
       v-model="product.name" 
       :placeholder="product.name"
+      class="input-field"
       :class="{ error: !product.name }"
     >
   </label>
@@ -34,6 +35,7 @@
       id="price" 
       v-model.number="product.price" 
       :placeholder="product.price"
+      class="input-field"
       :class="minError(product.price, 1000)"
     >
   </label>
@@ -47,6 +49,7 @@
       id="stock" 
       v-model.number="product.stock" 
       :placeholder="product.stock"
+      class="input-field"
       :class="minError(product.stock, 2)"
     >
   </label>
@@ -60,6 +63,7 @@
       id="imgsrc" 
       v-model="product.imgsrc" 
       :placeholder="product.imgsrc"
+      class="input-field"
       :class="{ error: !product.imgsrc }"
     >
   </label>
@@ -154,7 +158,7 @@ label {
   margin-bottom: 1rem;
 }
 
-input {
+.input-field {
   display: block;
   width: 100%;
   padding: 0.5rem;

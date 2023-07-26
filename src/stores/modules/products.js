@@ -59,6 +59,7 @@ export const products = {
     getProducts: ({ commit }) => {
       fetchService.get(endpoint)
         .then(products => commit('setProducts', products))
+        .then(() => commit('setFetchError', fetchService.error))
         .catch(error => commit('setFetchError', error))
     },
 
