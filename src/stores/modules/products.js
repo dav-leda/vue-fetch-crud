@@ -28,7 +28,7 @@ export const products = {
 
   getters: {
     products: state => state.products,
-    productById: state => id => state.products.find(p => p.id === id),
+    getProductById: state => id => state.products.find(p => p.id === id),
     fetchError: state => state.fetchError
   },
 
@@ -59,7 +59,6 @@ export const products = {
     getProducts: ({ commit }) => {
       fetchService.get(endpoint)
         .then(products => commit('setProducts', products))
-        .then(() => commit('setFetchError', fetchService.error))
         .catch(error => commit('setFetchError', error))
     },
 

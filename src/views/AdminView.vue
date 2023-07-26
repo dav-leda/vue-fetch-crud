@@ -4,12 +4,7 @@
 
     <button 
       class="btn-add"
-
-      @click="$router.push({ 
-        name: 'form', 
-        params: { id: 'new-product' } 
-      })"
-
+      @click="goToCreateProduct"
     >Agregar Producto</button>
 
     <TableComponent
@@ -84,7 +79,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('products', ['products', 'productById', 'fetchError'])
+    ...mapGetters('products', ['products', 'getProductById', 'fetchError'])
   },
 
   methods: {
@@ -94,13 +89,20 @@ export default {
     openModal(id) {
       this.showModal = true
       this.productId = id
-      const product = this.productById(id)
+      const product = this.getProductById(id)
       this.productName = product ? product.name : ''
     },
 
     confirmDelete() {      
       this.showModal = false
       this.deleteProduct(this.productId)
+    },
+
+    goToCreateProduct() {
+      this.$router.push({ 
+        name: 'form', 
+        params: { id: 'new-product' } 
+      })
     }
   }
 }

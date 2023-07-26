@@ -105,7 +105,7 @@ export default {
 
   computed: {
 
-    ...mapGetters('products', ['productById', 'fetchError']),
+    ...mapGetters('products', ['getProductById', 'fetchError']),
 
     newProduct() {
       return this.$route.params.id === 'new-product'
